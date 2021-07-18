@@ -1,0 +1,60 @@
+{% extends "main.html" %}
+{%block contents %}
+
+
+<script>
+    function checkjoin(){
+        if($("input[name=name]").val() == ""){
+            alert("사용자명 필수입니다");
+            $("input[name=name]").focus();
+            return false;
+        }
+        if($("input[name=email]").val() == ""){
+            alert("ID[email] 입력은 필수입니다");
+            $("input[name=email]").focus();
+            return false;
+        }
+        if($("input[name=PW]").val() == ""){
+            alert("PW 설정은 필수입니다");
+            $("input[name=PW]").focus();
+            return false;
+        }
+        if($("input[name=PW2]").val() == ""){
+            alert("비밀번호 확인을 위해 PW2 입력은 필수입니다");
+            $("input[name=PW2]").focus();
+            return false;
+        }
+        if($("input[name=PW2]").val() != $.trim("input[name=PW]").val() ){
+            alert("비밀번호가 일치하지 않습니다.");
+            $("input[name=PW2]").select().focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<form name = "form" action="{{url_for('member.join')}}" method = "POST" onsubmit = "return checkjoin()" >
+    <div class="form-group">
+        <label for="name">이름</label>
+        <input class="form-control" type = "text" name = "name">
+    </div>
+    <div class="form-group">
+        <label for="email">ID[email]</label>
+        <input class="form-control" type = "text" name = "email">
+    </div>
+    <div class="form-group">
+        <label for="PW">PW</label>
+        <input class="form-control" type = "password" name = "PW">
+    </div>
+    <div class="form-group">
+        <label for="PW2">PW check</label>
+        <input class="form-control" type = "password" name = "PW2">
+    </div>
+    <p></p>
+    <div class = "text-center"><input class="btn btn-primary" type = "submit" value ="join"></div>
+    
+
+</form>
+
+
+{% endblock %}

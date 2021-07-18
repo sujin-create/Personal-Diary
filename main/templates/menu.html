@@ -1,0 +1,13 @@
+<p></p>
+<p></p>
+{% if session.get("id") is not none %}
+<!--logout 상태니까 login페이지 구동-->
+    <a class= "btn btn-outline-dark btn-sm" href="{{url_for('member.logout')}}">logout</a>
+    <p></p>
+{% else %}  
+    <a class= "btn btn-outline-dark btn-sm" href = "{{url_for('member.join')}}" >회원가입</a>
+    <a class= "btn btn-outline-dark btn-sm" href="{{url_for('member.login')}} " >login</a>
+    <p></p>
+<!--logout 상태니까 login페이지 구동-->
+{%endif%}
+

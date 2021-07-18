@@ -1,0 +1,79 @@
+{% extends "main.html" %}
+{%block contents %}
+
+<script>
+    $(document).ready(function()
+    {
+        $("#summernote").summernote({
+        callbacks: {
+            onImageUpload : function(image){
+                for(var i=0; i<image.length; i++){
+                    uploadImage(image[i]);
+                }
+            }
+        }});
+    });
+
+    function uploadImage(image){
+        var data = new FormData();
+        console.log(image)
+        data.append("image", image);
+        $.ajax({
+            url: "{{url_for('board.up_image')}}",
+            cache: false,
+            contentType : false,
+            processData : false,
+            data:data,
+            type:"post",
+            success:function(url){
+                var image = $("<img>").attr("src",url).css('max-width',"800px");
+                $("#summernote").summernote("insertNode",image[0]);
+            },
+            error: function(data){
+                console.log(data);
+                alert(data);
+            }
+        });
+    }
+
+</script>
+
+<script>
+    function checkpost(){
+      
+        if($("input[name=title]").val() == ""){
+            alert("제목이 입력되지 않았습니다");
+            $("input[name=title]").focus();
+            return false;
+        }
+        if($("input[name=contents]").val() == ""){
+            alert("내용이 입력되지 않았습니다");
+            $("input[name=contents]").focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<form name = "form" method = "POST" action = "{{url_for('board.board_write')}}" onsubmit="return checkpost()">
+
+    <div class = "form-group">
+        <label for="keyw">오늘의 키워드</label>
+        <input class="form-control" type ="text" name="keyw"> 
+    </div>
+    <div>
+        <label for="title">제목</label>
+        <input class="form-control" type ="text" name="title"> 
+    </div>
+    <div>
+        <label for="contents">내용</label>
+        <textarea rows="12" class = "form-control" name = "contents" id="summernote" placeholder="오늘의 하루를 기록하세요"></textarea> 
+    </div>
+    <p></p>
+    <div class="text-center">
+        <input class="btn btn-primary btn-sm" type ="submit" vlaue="addpost">
+    </div>
+    
+</form>
+
+{% endblock %}
