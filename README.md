@@ -10,7 +10,7 @@
 [게시판만들기(3) - class diagram](https://get-it-withbsj.tistory.com/56?category=855141, "get-it-withbsj link")
 
 ### 4. code
-###### 위에 올려진 파일 참고 -> run.py를 실행시키면 되고 main에서 주기능들에 대한 .py파일들을 활용해서 작동함.
+###### use run.py
 
 ### 5. result
 
