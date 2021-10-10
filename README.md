@@ -1,5 +1,7 @@
 # Diary
 
+flask와 mongoDB를 활용한 개인용다이어리
+
 ### 1. user case
  [게시판 만들기 (1) - user story, case](https://get-it-withbsj.tistory.com/52?category=855141, "get-it-withbsj link")
 
